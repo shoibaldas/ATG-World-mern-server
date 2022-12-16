@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 const validator = {
     signup: [
-        body("userName", "UserName is required and must be String")
+        body("username", "Username is required and must be String")
             .trim()
             .notEmpty()
             .isString(),

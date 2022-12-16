@@ -16,11 +16,11 @@ class authController {
                     .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
                     .send(failure("Invalid inputs", errors.array()));
             }
-            const userName = req.body.userName;
+            const username = req.body.username;
             const email = req.body.email;
             const password = await bcrypt.hash(req.body.password, 10);
             const user = new User({
-                userName,
+                username,
                 email,
                 password
             });
@@ -28,7 +28,7 @@ class authController {
 
             const userData = {
                 _id: user._id,
-                userName: user.userName,
+                username: user.username,
                 email: user.email
             };
 
@@ -75,7 +75,7 @@ class authController {
 
             const userData = {
                 _id: user._id,
-                userName: user.userName,
+                username: user.username,
                 email: user.email,
             };
 
