@@ -95,6 +95,35 @@ class authController {
             next(error);
         }
     }
+
+    async forgetPassword(req, res, next) {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res
+                    .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
+                    .send(failure("Invalid Inputs", errors.array()));
+            }
+            const password = req.body.password;
+            const user = await User.findOne({ email: req.body.email }).exec();
+            if (!user) {
+                return res
+                    .status(HTTP_STATUS.UNAUTHORIZED)
+                    .send(failure("Unauthorized user login"));
+            }
+
+            user.password = await bcrypt.hash(password, 10);
+            await user.save();
+
+            return res
+                .status(HTTP_STATUS.OK)
+                .send(success("Password change is successful!"));
+        } catch (error) {
+            console.log(error);
+            next(error);
+        }
+    }
+
 }
 
 module.exports = new authController();
