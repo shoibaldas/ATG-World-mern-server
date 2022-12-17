@@ -94,6 +94,34 @@ class postController {
         }
     }
 
+    //like a post
+    // async addComment(req, res, next) {
+    //     try {
+    //         const errors = validationResult(req);
+    //         if (!errors.isEmpty()) {
+    //             return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
+    //         }
+    //         const postId = req.body.postId;
+    //         const comment = req.body.comment;
+    //         const addNewComment = await Post.findOne({ _id: postId }).exec();
+    //         // check if any cart exists under the reqested user.
+    //         if (addNewComment) {
+    //             //if exists, then add the product to that user cart
+    //             await addNewComment.addComment(postId);
+    //         } else {
+    //             // if doesn't exists, then create a cart for that user first
+    //             const newComment = new Post({ userId: req.user._id, comments: [] });
+    //             await newComment.save();
+    //             // then add the product to that user cart
+    //             await newComment.addComment(postId);
+    //         }
+    //         return res.status(HTTP_STATUS.OK).send(success('Product is added to cart'));
+    //     } catch (error) {
+    //         console.log(error);
+    //         next(error);
+    //     }
+    // }
+
 
 }
 

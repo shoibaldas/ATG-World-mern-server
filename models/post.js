@@ -21,15 +21,31 @@ const postSchema = new mongoose.Schema({
     comments: [
         {
             comment: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Topic",
+                type: String,
+                required: true,
             },
         },
     ],
     postLikes: {
         type: Number,
     }
-})
+});
+
+// postSchema.methods.addComment = async function (postId) {
+//     try {
+//         const postIndex = this.comments.findIndex(
+//             (post) => post.comment.toString() === postId.toString()
+//         );
+//         this.comments.push({
+//             comment: postId,
+//         });
+
+//         await this.save();
+//     } catch (error) {
+//         console.log(error);
+//         throw new Error(error);
+//     }
+// };
 
 const Post = mongoose.model("Post", postSchema);
 
